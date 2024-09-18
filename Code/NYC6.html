@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Music Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            height: 60%;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .playlist {
+            width: 30%;
+            background-color: #2c2c2c;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .playlist ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .playlist li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #444;
+        }
+        .playlist li:hover {
+            background-color: #3a3a3a;
+        }
+        .player {
+            width: 70%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .player audio {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="playlist">
+            <h2>Playlist</h2>
+            <ul>
+                <li data-src="songfiles/tasmmp3.mp3">Song 1</li>
+                <li data-src="song2.mp4">Song 2</li>
+                <li data-src="song3.mp4">Song 3</li>
+                <!-- Add more songs here -->
+            </ul>
+        </div>
+        <div class="player">
+            <h2>Now Playing</h2>
+            <audio id="audioPlayer" controls>
+                <source src="songfiles/tasmmp3.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playlistItems = document.querySelectorAll('.playlist li');
+
+        playlistItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.getAttribute('data-src');
+                audioPlayer.src = src;
+                audioPlayer.play();
+            });
+        });
+    </script>
+</body>
+</html>
